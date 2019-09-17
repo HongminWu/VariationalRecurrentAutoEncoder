@@ -1,5 +1,7 @@
 # Variational Recurrent Autoencoder (VRAE) in TensorFlow
 
+forked from [Fabius, Otto](https://github.com/arunesh-mittal/VariationalRecurrentAutoEncoder.git) 
+
 
 Implementation of VRAE paper: "Fabius, Otto, and Joost R. van Amersfoort. "Variational recurrent auto-encoders." arXiv preprint arXiv:1412.6581 (2014)." in Tensorflow on MIDI data.
 
@@ -8,6 +10,13 @@ Original Paper: https://arxiv.org/abs/1412.6581
 Primary Requirements:  
 [Tensorflow](https://www.tensorflow.org/): [Release 1.4](https://github.com/tensorflow/tensorflow/releases)  
 [Python 3.0](https://www.python.org/download/releases/3.0/)
+
+## Tutorial
+1. git clone  this repo 
+2. sudo pip install 	DEPENDANCES
+2. new a folder named "MIDI_Data" and download the ***source*** MIDI dataset
+3. python midi_io.py (convert the original dataset into the *npy format )
+4. python vrae.py  data_set_idx=0 z_dim=20 time_steps=50
 
 ## Summary
 
