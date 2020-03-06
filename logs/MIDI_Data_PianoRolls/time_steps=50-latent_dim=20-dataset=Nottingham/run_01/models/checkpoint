@@ -1,2 +1,6 @@
-model_checkpoint_path: "epoch_0.ckpt"
-all_model_checkpoint_paths: "epoch_0.ckpt"
+model_checkpoint_path: "epoch_39000.ckpt"
+all_model_checkpoint_paths: "epoch_35000.ckpt"
+all_model_checkpoint_paths: "epoch_36000.ckpt"
+all_model_checkpoint_paths: "epoch_37000.ckpt"
+all_model_checkpoint_paths: "epoch_38000.ckpt"
+all_model_checkpoint_paths: "epoch_39000.ckpt"

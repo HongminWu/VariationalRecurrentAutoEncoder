@@ -17,12 +17,12 @@ from jupyterthemes import jtplot
 x_in_dim = 88
 
 # Params replicated from Fabius et. al Paper
-beta_1 = 0.05
-beta_2 = 0.001
-num_epochs = 40000 
+beta_1 = 0.05 # adam parameters
+beta_2 = 0.001 # adam parameters
+num_epochs = 10 # 40000
 learning_rate_1 = 2e-5
 learning_rate_2 = 1e-5
-num_epochs_to_diff_learn_rate = 16000 
+num_epochs_to_diff_learn_rate = 16000 # change the learning rate
 num_epochs_to_save_model = 1000 
 num_hidden_units = 500
 #decay_rate = .7
@@ -252,6 +252,7 @@ with tf.Session() as sess:
         print('Average loss epoch {0}: {1}'.format(epoch, epoch_loss/num_batches)) 
         print('Average latent loss epoch {0}: {1}'.format(epoch, epoch_latent_loss/num_batches)) 
         print('Learning Rate {}'.format(learning_rate_))
+        print('')
         
         # Write train summaries once a epoch
         scalar_train_summaries = sess.run(scalar_summaries,feed_dict={X: feed_dict(batch_size,'train')})

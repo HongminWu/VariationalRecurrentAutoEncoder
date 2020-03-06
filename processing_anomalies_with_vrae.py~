@@ -1,0 +1,39 @@
+import coloredlogs, logging
+import os, ipdb
+import glob
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import re
+
+
+coloredlogs.install()
+anomaly_classification_feature_selection_folder='/home/user/baxter_ws/src/SPAI/smach_based_introspection_framework/introspection_data_folder.AC_offline_test/anomaly_classification_feature_selection_folder'
+
+if __name__ == '__main__':
+    logger = logging.getLogger()
+    logger.info("load_csv_data_from_filtered_scheme")
+    
+    folders = glob.glob(os.path.join(
+        anomaly_classification_feature_selection_folder,
+        'No.* filtering scheme',
+        'anomalies_grouped_by_type',
+        'anomaly_type_(*)',
+    )) 
+
+    for folder in folders: # for each anomaly_type
+        samples = []
+        logger.info(folder)
+        path_postfix = os.path.relpath(folder, anomaly_classification_feature_selection_folder).replace("anomalies_grouped_by_type"+os.sep, "")
+
+        prog = re.compile(r'anomaly_type_\(?([^\(\)]+)\)?')
+        anomaly_type = prog.search(path_postfix).group(1)
+        csvs = glob.glob(os.path.join(folder, '*', '*.csv'))
+        for j in csvs:
+            df =  pd.read_csv(j, sep = ',')
+            # delete the 1st column with is time index
+            df = df.drop(['Unnamed: 0'], axis = 1)
+            samples.append(df.values.T)
+        data = np.stack(samples)
+        logger.info('Successfully! load the data of %s'%anomaly_type)
+        np.save("./anomalies/"+anomaly_type+".npy", data)
